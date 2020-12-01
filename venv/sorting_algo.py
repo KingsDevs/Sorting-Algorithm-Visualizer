@@ -4,7 +4,7 @@ def selection_sort(a):
     minimum_index = counter
     traversing_index = counter + 1
     while(counter < len(a)):
-        while(traversing_index < len(a)):
+        for traversing_index in range(counter, len(a)):
             if a[traversing_index] < a[minimum_index]:
                 minimum_index = traversing_index
             traversing_index += 1
@@ -37,31 +37,39 @@ def cocktail_shaker_sort(a):
     while(swapped_values):
         swapped_values = False
         traversing_index = 0
-        for i in range(len(a)-1):
-            if a[traversing_index] > a[traversing_index + 1]:
-                a[traversing_index], a[traversing_index + 1] = a[traversing_index + 1], a[traversing_index]
+        for i in range(0,len(a)-1):
+            if a[i] > a[i + 1]:
+                a[i], a[i + 1] = a[i + 1], a[i]
                 swapped_values = True
             traversing_index += 1
 
         if swapped_values:
-            while(traversing_index > (len(a)-len(a)+1)):
-                if a[traversing_index] < a[traversing_index - 1]:
-                    a[traversing_index], a[traversing_index - 1] = a[traversing_index - 1], a[traversing_index]
+            for i in range(traversing_index, (len(a)-len(a)+1), -1):
+                if a[i] < a[i - 1]:
+                    a[i], a[i - 1] = a[i - 1], a[i]
                     swapped_values = True
                 traversing_index -= 1
-                print(traversing_index)
+
     return a
 
 def odd_even_sort(a):
     is_sorted = False
     while(is_sorted == False):
         is_sorted = True
+        #Odd Face
+        for i in range(1,len(a)-1,2):
+            if a[i] > a[i+1]:
+                a[i], a[i+1] = a[i+1], a[i]
+                is_sorted = False
+        #Even Face
+        for i in range(0, len(a)-1,2):
+            if a[i] > a[i+1]:
+                a[i], a[i+1] = a[i+1], a[i]
+                is_sorted = False
 
     return a
 
 a = [30,2,4,8,23,1,6,9,2,45,2,34]
 
-print(selection_sort(a))
-print(bubble_sort(a))
-print(cocktail_shaker_sort(a))
+print(odd_even_sort(a))
 
