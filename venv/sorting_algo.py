@@ -4,28 +4,34 @@ def selection_sort(a):
     minimum_index = counter
     traversing_index = counter + 1
     while(counter < len(a)):
-        is_greater = False
-
         while(traversing_index < len(a)):
             if a[traversing_index] < a[minimum_index]:
                 minimum_index = traversing_index
-                is_greater = True
             traversing_index += 1
 
-        if is_greater is True:
-            min = a[counter]
-            max = a[minimum_index]
-            a[counter] = max
-            a[minimum_index] = min
-
+        a[counter], a[minimum_index] = a[minimum_index], a[counter]
         counter += 1
         minimum_index = counter
         traversing_index = counter + 1
 
+    return a
+
+def bubble_sort(a):
+    swapped_values = True
+    traversing_index = 0
+
+    while(swapped_values):
+        swapped_values = False
+        traversing_index = 0
+        for traversing_index in range(len(a)-1):
+            if a[traversing_index] > a[traversing_index + 1]:
+                a[traversing_index], a[traversing_index + 1] = a[traversing_index + 1], a[traversing_index]
+                swapped_values = True
 
     return a
 
-a = [30,2,4,122,23,43,12,6,43,2,34,6,76,]
+a = [30,2,4]
 
-print(selection_sort(a))
+print("Selection Sort: " ,selection_sort(a))
+print("Bubble Sort: " ,bubble_sort(a))
 
