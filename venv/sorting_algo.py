@@ -37,20 +37,29 @@ def cocktail_shaker_sort(a):
     while(swapped_values):
         swapped_values = False
         traversing_index = 0
-        while(traversing_index < len(a)-1):
+        for i in range(len(a)-1):
             if a[traversing_index] > a[traversing_index + 1]:
-                swapped_values = True
                 a[traversing_index], a[traversing_index + 1] = a[traversing_index + 1], a[traversing_index]
+                swapped_values = True
             traversing_index += 1
-        if swapped_values is True:
+
+        if swapped_values:
             while(traversing_index > (len(a)-len(a)+1)):
-                if a[traversing_index] > a[traversing_index - 1]:
+                if a[traversing_index] < a[traversing_index - 1]:
                     a[traversing_index], a[traversing_index - 1] = a[traversing_index - 1], a[traversing_index]
                     swapped_values = True
                 traversing_index -= 1
+                print(traversing_index)
     return a
 
-a = [30,2,4,8,23,1,6,9,2,45]
+def odd_even_sort(a):
+    is_sorted = False
+    while(is_sorted == False):
+        is_sorted = True
+
+    return a
+
+a = [30,2,4,8,23,1,6,9,2,45,2,34]
 
 print(selection_sort(a))
 print(bubble_sort(a))
