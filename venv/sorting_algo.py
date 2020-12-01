@@ -30,8 +30,29 @@ def bubble_sort(a):
 
     return a
 
-a = [30,2,4]
+def cocktail_shaker_sort(a):
+    swapped_values = True
+    traversing_index = 0
 
-print("Selection Sort: " ,selection_sort(a))
-print("Bubble Sort: " ,bubble_sort(a))
+    while(swapped_values):
+        swapped_values = False
+        traversing_index = 0
+        while(traversing_index < len(a)-1):
+            if a[traversing_index] > a[traversing_index + 1]:
+                swapped_values = True
+                a[traversing_index], a[traversing_index + 1] = a[traversing_index + 1], a[traversing_index]
+            traversing_index += 1
+        if swapped_values is True:
+            while(traversing_index > (len(a)-len(a)+1)):
+                if a[traversing_index] > a[traversing_index - 1]:
+                    a[traversing_index], a[traversing_index - 1] = a[traversing_index - 1], a[traversing_index]
+                    swapped_values = True
+                traversing_index -= 1
+    return a
+
+a = [30,2,4,8,23,1,6,9,2,45]
+
+print(selection_sort(a))
+print(bubble_sort(a))
+print(cocktail_shaker_sort(a))
 
