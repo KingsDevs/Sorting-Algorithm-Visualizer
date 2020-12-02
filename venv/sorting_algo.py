@@ -35,25 +35,32 @@ class sorting_algo:
             x = self.x_bar(i)
             self.draw_bar(arr[i],x,color)
             time.sleep(self.delay)
-
-
+        pygame.display.update()
+    def set_color(self,arr,index,base_color,active_color):
+        for i in range(len(arr)):
+            x = self.x_bar(i)
+            if i == index:
+                self.drawbars(arr, active_color)
+            else:
+                self.drawbars(arr, base_color)
+            time.sleep(self.delay)
+        pygame.display.update()
 
     def draw_bar(self,height,x,color):
         pygame.draw.rect(self.screen, color, (x, 400, self.bar_width, height), 0)
 
     def selection_sort(self,a):
-        elapsed = self.clock.tick(1)
         counter = 0
         minimum_index = counter
         traversing_index = counter + 1
         while(counter < len(a)):
             color = self.color
             for traversing_index in range(counter, len(a)):
+
                 if a[traversing_index] < a[minimum_index]:
                     minimum_index = traversing_index
                 traversing_index += 1
             self.drawbars(a, self.color)
-            pygame.display.update()
             self.screen.fill(self.backcolor)
             a[counter], a[minimum_index] = a[minimum_index], a[counter]
             counter += 1
@@ -70,7 +77,7 @@ class sorting_algo:
             swapped_values = False
             traversing_index = 0
             self.drawbars(a,self.color)
-            pygame.display.update()
+
             for traversing_index in range(len(a)-1):
                 if a[traversing_index] > a[traversing_index + 1]:
                     a[traversing_index], a[traversing_index + 1] = a[traversing_index + 1], a[traversing_index]
@@ -98,7 +105,6 @@ class sorting_algo:
                         swapped_values = True
                     traversing_index -= 1
             self.drawbars(a,self.color)
-            pygame.display.update()
             self.screen.fill(self.backcolor)
 
         return a
@@ -118,7 +124,6 @@ class sorting_algo:
                     a[i], a[i+1] = a[i+1], a[i]
                     is_sorted = False
             self.drawbars(a,self.color)
-            pygame.display.update()
             self.screen.fill(self.backcolor)
 
 
