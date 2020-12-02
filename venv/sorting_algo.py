@@ -35,7 +35,7 @@ class sorting_algo:
             self.draw_bar(arr[i],x)
 
     def draw_bar(self,height,x):
-        pygame.draw.rect(self.screen, self.color, (x, 200, self.bar_width, height), 0)
+        pygame.draw.rect(self.screen, self.color, (x, 400, self.bar_width, height), 0)
 
     def selection_sort(self,a):
         elapsed = self.clock.tick(30)
@@ -59,12 +59,6 @@ class sorting_algo:
             counter += 1
             minimum_index = counter
             traversing_index = counter + 1
-        for i in range(len(a)):
-            x = self.x_bar(i)
-            height = a[i]
-            self.draw_bar(height, x)
-            time.sleep(self.delay)
-            pygame.display.update()
         return a
 
     def bubble_sort(self,a):

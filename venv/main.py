@@ -15,7 +15,6 @@ num_bars = 10
 bar_width = 20
 space = 5
 delay = .1
-sorting = False
 
 
 pygame.init()
@@ -30,11 +29,9 @@ running = True
 def draw_button(title,x,y,w,h,ic,ac):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
-    global sorting
-
+    sorting = False
     if x+w > mouse[0] > x and y+h > mouse[1] > y:
         pygame.draw.rect(screen, ac, (x,y,w,h),0)
-
         if click[0] == 1:
             sorting = True
     else:
@@ -42,12 +39,17 @@ def draw_button(title,x,y,w,h,ic,ac):
 
     text = font.render(title,True,WHITE)
     screen.blit(text, (x+10, y+10))
+    return sorting
 
 so = sorting_algo(screen,BACKGROUND_COLOR,BLACK,num_bars,bar_width,space,WIDTH,delay)
-arr = so.random_items()
+
 while True:
-    draw_button("Sort",200-75/2,200-25,75,50,(230,230,230),(200,200,200))
+    sorting = False
+    random_array = draw_button("Random", 300-75/2,200-25,110,50,(230,230,230),(200,200,200))
     pygame.display.update()
+    if random_array:
+        arr = so.random_items()
+        sorting = draw_button("Sort", 200 - 75 / 2, 200 - 25, 75, 50, (230, 230, 230), (200, 200, 200))
     if sorting:
         print(so.bubble_sort(arr))
 
