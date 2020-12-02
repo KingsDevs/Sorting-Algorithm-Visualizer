@@ -2,10 +2,6 @@ import pygame
 import os
 import time
 
-class draw_bars:
-    @staticmethod
-    def drawbars(n):
-        pass
 
 
 class sorting_algo:
