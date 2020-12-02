@@ -1,4 +1,4 @@
-from sorting_algo import sorting_algo as so
+from sorting_algo import sorting_algo
 import pygame
 import sys
 import time
@@ -7,14 +7,25 @@ import random
 WIDTH = 800
 HEIGHT = 600
 
-BACKGROUND_COLOR = (75,71,88)
+BACKGROUND_COLOR = (53,45,49)
+BLACK = (0,0,0)
+WHITE = (255,255,255)
+
+num_bars = 10
+bar_width = 20
+space = 5
+delay = .1
+sorting = False
+
 
 pygame.init()
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 screen.fill((BACKGROUND_COLOR))
+font = pygame.font.SysFont("Arial", 30)
 pygame.display.update()
+
 running = True
-sorting = False
+
 
 def draw_button(title,x,y,w,h,ic,ac):
     mouse = pygame.mouse.get_pos()
@@ -29,12 +40,21 @@ def draw_button(title,x,y,w,h,ic,ac):
     else:
         pygame.draw.rect(screen, ac, (x, y, w, h), 0)
 
-while running:
+    text = font.render(title,True,WHITE)
+    screen.blit(text, (x+10, y+10))
+
+so = sorting_algo(screen,BACKGROUND_COLOR,BLACK,num_bars,bar_width,space,WIDTH,delay)
+arr = so.random_items()
+while True:
+    draw_button("Sort",200-75/2,200-25,75,50,(230,230,230),(200,200,200))
+    pygame.display.update()
+    if sorting:
+        print(so.bubble_sort(arr))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
+            pygame.quit()
+            sys.exit()
 
 
-pygame.quit()
-sys.exit()
+
