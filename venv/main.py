@@ -11,10 +11,10 @@ BACKGROUND_COLOR = (53,45,49)
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 
-num_bars = 40
+num_bars = 30
 bar_width = 20
 space = 5
-delay = .01
+delay = .005
 
 
 pygame.init()
@@ -46,7 +46,7 @@ arr = so.random_items()
 while True:
     sorting = draw_button("Sort", 200 - 75 / 2, 200 - 25, 75, 50, (230, 230, 230), (200, 200, 200))
     if sorting:
-        arr = so.odd_even_sort(arr)
+        arr = so.bubble_sort(arr)
         so.drawbars(arr,BLACK)
     pygame.display.update()
     for event in pygame.event.get():
